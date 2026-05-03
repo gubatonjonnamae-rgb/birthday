@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 🐋💙</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #a0e9ff, #3b82f6);
+      overflow-x: hidden;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2.4em;
+    }
+
+    .cake {
+      font-size: 70px;
+      margin-top: 10px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .card {
+      background: rgba(0,0,0,0.35);
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 750px;
+      margin: 20px auto;
+      line-height: 1.6;
+      text-align: left;
+      display: none;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .prompt {
+      margin-top: 15px;
+      font-size: 17px;
+      background: rgba(0,0,0,0.3);
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 20px;
+      max-width: 90%;
+    }
+
+    .button {
+      margin-top: 10px;
+      padding: 12px 22px;
+      background: #ff69b4;
+      border: none;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .whale {
+      position: fixed;
+      bottom: 20px;
+      width: 160px;
+      animation: swim 14s linear infinite;
+    }
+
+    @keyframes swim {
+      0% { left: -200px; }
+      100% { left: 110%; }
+    }
+
+    .sparkles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(white 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.3;
+    }
+
+    .heart {
+      position: fixed;
+      color: pink;
+      font-size: 20px;
+      animation: fall linear forwards;
+      top: -20px;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sparkles"></div>
+
+  <h1>Happy Birthday, Joung! 🐋💙</h1>
+
+  <div class="cake">🎂</div>
+
+  <!-- MULTI QUESTIONS -->
+  <div id="step1" class="prompt">
+    Question 1: Are you ready to enter my little ocean world? 🌊
+    <br><button class="button" onclick="nextStep(2)">Yes, click here</button>
+  </div>
+
+  <div id="step2" class="prompt" style="display:none;">
+    Question 2: Are you smiling right now? 😊
+    <br><button class="button" onclick="nextStep(3)">Yes, click here</button>
+  </div>
+
+  <div id="step3" class="prompt" style="display:none;">
+    Question 3: Promise you will read this with your heart? 💙
+    <br><button class="button" onclick="nextStep(4)">I promise</button>
+  </div>
+
+  <div id="step4" class="prompt" style="display:none;">
+    Final Question: Ready for your birthday message? 🐋🎉
+    <br><button class="button" onclick="showMessage()">Click here</button>
+  </div>
+
+  <!-- MESSAGE (UNCHANGED CONTENT) -->
+  <div class="card" id="msg">
+    <p><strong>Happy birthday, dae Bong Joung! 🎉</strong></p>
+
+    <p>Wishing you all the things you want in life. Always remember that I will always be there for you divaaaa, you know I’ll always be there for you (real itow ah), no matter what. If the world turns against you, I’ll be there for you through thick and thin. Please take care of your health, Joungksieee—don’t get sick, okay?And thank you for being my chika buddy. I know I tend to overshare sometimes and worry that I might be annoying because of it, so I’m really sorry if I ever am.I hope we get to see each other again soon—like the universe is bringing us back together, char. And if we’re truly meant to meet again, then that would be perfect. I won’t ask for anything more as long as you’re doing okay and living a happy life. That alone is enough for me.Just keep chipping away at your goals, bae, but don’t burn yourself out, okay? You don’t have to check on me—I’m doing fine. What matters is that you take care of yourself, especially since I can’t be there to do it for you because of the distance. Still, I always include you in my prayers. I’ll keep working on my goals too, because we never really know what the future has in store for us.I check on you quietly, in my own way.And… am I allowed to call you “bae”? Never mind."I hope some day we can watch the stars together."I wish I could hug you right now and tell you how proud I am of you, Joung.I love you always, okay? Once again, happy birthday, my shakeyybae.💛</p>
+  </div>
+
+  <img class="whale" src="https://cdn-icons-png.flaticon.com/512/616/616554.png">
+
+  <script>
+    function nextStep(step) {
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById('step' + i);
+        if (el) el.style.display = 'none';
+      }
+      const next = document.getElementById('step' + step);
+      if (next) next.style.display = 'block';
+    }
+
+    function showMessage() {
+      document.getElementById("step4").style.display = "none";
+      document.getElementById("msg").style.display = "block";
+      startHearts();
+    }
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
